@@ -7,8 +7,8 @@ Game = {
     column: 3,
     block: {
       //每个块的像素大小
-      width: 80,
-      height: 80,
+      width: 121,
+      height: 121,
     },
     padding: 5, //格子与格子之间的填充间距
   },

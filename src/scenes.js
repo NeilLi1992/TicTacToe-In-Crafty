@@ -1,16 +1,29 @@
-//Loadingåœºæ™¯ï¼Œç”±game.jsä¸­çš„startå‡½æ•°è¿›å…¥ã€‚
-// è¿›è¡Œå¿…è¦çš„èµ„æºåŠ è½½ä»¥åï¼Œå°±è¿›å…¥Gameä¸»æ¸¸æˆåœºæ™¯
+//Loading³¡¾°£¬ÓÉgame.jsÖĞµÄstartº¯Êı½øÈë¡£
+// ½øĞĞ±ØÒªµÄ×ÊÔ´¼ÓÔØÒÔºó£¬¾Í½øÈëGameÖ÷ÓÎÏ·³¡¾°
 Crafty.scene('Loading', function() {
-  //ç›®å‰åªéœ€è¦å¼€å§‹æ¸¸æˆ
-  Crafty.scene('Game');
+  //Ä¿Ç°Ö»ĞèÒª¿ªÊ¼ÓÎÏ·
+  Crafty.load([
+    'assets/init2.jpg',
+    'assets/circle2.jpg',
+    'assets/cross2.jpg',
+    ], function() {
+      Crafty.sprite(121, 'assets/init2.jpg', {spr_origin: [0, 0]});
+      Crafty.sprite(121, 'assets/circle2.jpg', {spr_O: [0, 0]});
+      Crafty.sprite(121, 'assets/cross2.jpg', {spr_X: [0, 0]});
+
+      ///////////////////////////Fuck£¡£¡£¡£¡Ò»¶¨Òª×¢Òâ£¬±ØĞë½«ÏÂÃæÕâ¾äĞ´ÔÚfunction()ÄÚ£¬
+      //²Å±íÊ¾µÈ ¡¾¡¾¡¾¼ÓÔØÍê±Ïºó¡¿¡¿¡¿²Å½øÈëÏÂ¸ö³¡¾°£¡ÎÒ²Ù£¬¸ÄÁËÎÒÒ»¸öÍíÉÏ²ÅÕÒµ½Õâ¸öÎÊÌâ£¡
+      Crafty.scene('Game');
+  });
+
 });
 
 
-//Gameä¸»æ¸¸æˆåœºæ™¯ã€‚åŒæ—¶ä¹Ÿåœ¨è¿™é‡Œå®ç°ä¸»è¦çš„æ§åˆ¶é€»è¾‘ã€‚
+//GameÖ÷ÓÎÏ·³¡¾°¡£Í¬Ê±Ò²ÔÚÕâÀïÊµÏÖÖ÷ÒªµÄ¿ØÖÆÂß¼­¡£
 Crafty.scene('Game', function() {
-  //è®¾ç½®å…¨å±€å˜é‡ å½“å‰ç©å®¶
+  //ÉèÖÃÈ«¾Ö±äÁ¿ µ±Ç°Íæ¼Ò
   Game.currentPlayer = "X";
-  //åˆ›å»ºäºŒç»´æ•°ç»„ï¼Œä½œä¸ºæ¨¡å‹ï¼Œç”¨äºæ£‹å±€æ ¡éªŒ
+  //´´½¨¶şÎ¬Êı×é£¬×÷ÎªÄ£ĞÍ£¬ÓÃÓÚÆå¾ÖĞ£Ñé
   Game.model = new Array(Game.map_grid.row);
   for (var i = 0; i < Game.map_grid.column; i++) {
     Game.model[i] = new Array(Game.map_grid.column);
@@ -18,29 +31,32 @@ Crafty.scene('Game', function() {
       Game.model[i][j] = "origin";
     }
   }
-  //æ¸…ç©ºç»“æŸæ¶ˆæ¯
+  //Çå¿Õ½áÊøÏûÏ¢
   Game.endingMsg = undefined;
-  //æ¸¸æˆå¯ä»¥å¼€å§‹è¿›è¡Œ
+  //ÓÎÏ·¿ÉÒÔ¿ªÊ¼½øĞĞ
   Game.canGo = true;
 
 
-  //åœ¨æ£‹ç›˜ä¸Šå¸ƒç½®9ä¸ªæ–¹å—ä½ç½®
+
+
+  //ÔÚÆåÅÌÉÏ²¼ÖÃ9¸ö·½¿éÎ»ÖÃ
   for (var x = 0; x < Game.map_grid.row; x++) {
     for (var y = 0; y < Game.map_grid.column; y++) {
-      // åªè¦è®¾ç½®x, yï¼Œå› ä¸ºw,håœ¨componentä¸­å·²ç»å›ºå®šå¥½äº†ã€‚
+      // Ö»ÒªÉèÖÃx, y£¬ÒòÎªw,hÔÚcomponentÖĞÒÑ¾­¹Ì¶¨ºÃÁË¡£
       Crafty.e('Block').at(x, y);
 
     }
   }
 
+  // °ó¶¨¼ìÑé·½·¨
   this.validate = this.bind('Validate', function(){
-    //è°ƒç”¨å®šä¹‰åœ¨src/helper.jsä¸­çš„è¾…åŠ©å‡½æ•°
+    //µ÷ÓÃ¶¨ÒåÔÚsrc/helper.jsÖĞµÄ¸¨Öúº¯Êı
     switch(validate()) {
-      //éªŒè¯ç»“æœè¡¨æ˜æ¸¸æˆå¯ä»¥ç»§ç»­
+      //ÑéÖ¤½á¹û±íÃ÷ÓÎÏ·¿ÉÒÔ¼ÌĞø
       case "continue":
         break;
 
-      //ç©å®¶Xå–èƒœ
+      //Íæ¼ÒXÈ¡Ê¤
       case "X":
         console.log("X wins");
         Game.canGo = false;
@@ -48,7 +64,7 @@ Crafty.scene('Game', function() {
         Crafty.scene('Ending');
         break;
 
-      //ç©å®¶Oå–èƒœ
+      //Íæ¼ÒOÈ¡Ê¤
       case "O":
         console.log("O wins");
         Game.canGo = false;
@@ -56,7 +72,7 @@ Crafty.scene('Game', function() {
         Crafty.scene('Ending');
         break;
 
-      //å¹³å±€ç»“æŸæ¸¸æˆ
+      //Æ½¾Ö½áÊøÓÎÏ·
       case "draw":
         console.log("Draw");
         Game.canGo = false;
@@ -71,14 +87,14 @@ Crafty.scene('Game', function() {
 });
 
 
-//ç»“æŸåœºæ™¯
+//½áÊø³¡¾°
 Crafty.scene('Ending', function() {
-  //ç»˜åˆ¶å¯¹è¯æ¡†èƒŒæ™¯
-  Crafty.e('2D, Canvas, Color, Mouse')
+  //»æÖÆ¶Ô»°¿ò±³¾°
+  Crafty.e('2D, DOM, Color, Mouse')
       .attr({x: Game.width()/6 - 10 , y: Game.height()/6, w: Game.width()/1.5 + 20, h: Game.height()/1.5})
       .color(Game.color.endingDialogue);
 
-  //ç»˜åˆ¶æ–‡å­—
+  //»æÖÆÎÄ×Ö
   Crafty.e('2D, Text, DOM')
       .attr({x: 0, y: Game.height()/6 + 20, w: Game.width()})
       .text(Game.endingMsg)

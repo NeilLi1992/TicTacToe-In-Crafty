@@ -24,27 +24,30 @@ Crafty.c('Grid', {
   }
 });
 
-
 Crafty.c('Block', {
   //定义块的相关属性
   _state: "origin",
 
   init: function() {
-    this.requires('2D, Canvas, Grid, Color, Mouse, Persist')
+    this.requires('2D, DOM, Grid, Mouse, spr_origin, Persist')
         // 设置每一块的长与宽，这两个参数是固定的
         .attr({w: Game.map_grid.block.width,  h: Game.map_grid.block.height,})
-        .color(Game.color.origin)
+        // .color(Game.color.origin)
         .bind('Click', function(e) {
           //满足检测条件再进行响应
           if (Game.canGo && e.mouseButton == Crafty.mouseButtons.LEFT && this._state === "origin") {
             if (Game.currentPlayer === "X") {
               //修改色块颜色，块的状态，修改全局模型，更改全局变量 当前玩家
-              this.color(Game.color.X);
+              // this.color(Game.color.X);
+              this.removeComponent('spr_origin');
+              this.addComponent('spr_X');
               this._state = "X";
               Game.model[this.at().x][this.at().y] = "X"
               Game.currentPlayer = "O";
             } else {
-              this.color(Game.color.O);
+              // this.color(Game.color.O);
+              this.removeComponent('spr_origin');
+              this.addComponent('spr_O');
               this._state = "O";
               Game.model[this.at().x][this.at().y] = "O";
               Game.currentPlayer = "X";
@@ -54,5 +57,6 @@ Crafty.c('Block', {
           Crafty.trigger('Validate');
           }
         });
+
   },
 });
