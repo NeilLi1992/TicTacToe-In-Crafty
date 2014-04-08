@@ -45,7 +45,7 @@ Game = {
 
   //Initialize and start the game!
   start: function() {
-    Crafty.init(Game.width(), Game.height());
+    Crafty.init(Game.width(), Game.height(), 'gameContainer');
     Crafty.scene('Loading');
   },
 }

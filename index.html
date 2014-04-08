@@ -1,17 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="lib/crafty.js"></script>
-  <script src="src/helper.js"></script>
-  <script src="src/game.js"></script>
-  <script src="src/components.js"></script>
-  <script src="src/scenes.js"></script>
-  <script>
-    window.addEventListener('load', Game.start);
-  </script>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
 
-</head>
-<body>
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
 
-</body>
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Tictactoe-in-crafty by NeilLi1992</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/NeilLi1992/TicTacToe-In-Crafty">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Tictactoe-in-crafty</h1>
+            <h2>This is a simple TicTacToe game created by Crafty JS</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/NeilLi1992/TicTacToe-In-Crafty/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/NeilLi1992/TicTacToe-In-Crafty/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h3>
+        <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Enjoy playing Tic-Tac-Toe!</h3>
+
+        <div id="cr-stage" align="center">
+          <script src="lib/crafty.js"></script>
+          <script src="src/helper.js"></script>
+          <script src="src/game.js"></script>
+          <script src="src/components.js"></script>
+          <script src="src/scenes.js"></script>
+          <script>
+            window.addEventListener('load', Game.start);
+          </script>
+        </div>
+
+
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/NeilLi1992">NeilLi1992</a> can be found on <a href="https://github.com/NeilLi1992/TicTacToe-In-Crafty">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+
+  </body>
 </html>
