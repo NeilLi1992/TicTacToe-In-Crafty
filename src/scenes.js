@@ -36,9 +36,6 @@ Crafty.scene('Game', function() {
   //游戏可以开始进行
   Game.canGo = true;
 
-
-
-
   //在棋盘上布置9个方块位置
   for (var x = 0; x < Game.map_grid.row; x++) {
     for (var y = 0; y < Game.map_grid.column; y++) {
@@ -85,7 +82,6 @@ Crafty.scene('Game', function() {
     }
   });
 });
-
 
 //结束场景
 Crafty.scene('Ending', function() {

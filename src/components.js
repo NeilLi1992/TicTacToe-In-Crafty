@@ -57,6 +57,5 @@ Crafty.c('Block', {
           Crafty.trigger('Validate');
           }
         });
-
   },
 });
