@@ -56,6 +56,19 @@ Crafty.scene('Game', function() {
     }
   }
 
+  // 放入messageBox
+  Crafty.e("2D, DOM, WPMessageBox, Keyboard")
+      .attr(Game.msg_box_attr())
+      .messageBox(["Hello!\nHow are you doing?", "I'm fine, and you?"],
+                  {borderSize: Game.msg_box.borderSize, font: {size: '12px'}})
+       .bind("KeyDown", function(e)
+                  {
+                      if(this.isDown('SPACE'))
+                      {
+                          this.next();
+                      }
+                  });
+
   //播放开始声音
   Crafty.audio.play('start');
 

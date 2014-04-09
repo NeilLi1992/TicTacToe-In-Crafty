@@ -13,6 +13,12 @@ Game = {
     padding: 5, //格子与格子之间的填充间距
   },
 
+  //定义messageBox属性
+  msg_box: {
+    borderSize: 3,
+    height: 70,
+  },
+
   //相关颜色信息
   color: {
     origin: "#FF17FB",
@@ -45,9 +51,14 @@ Game = {
 
   //Initialize and start the game!
   start: function() {
-    Crafty.init(Game.width(), Game.height(), 'gameContainer');
+    Crafty.init(Game.width(), Game.height() + Game.map_grid.padding + Game.msg_box.height + Game.msg_box.borderSize * 2, 'gameContainer');
     Crafty.scene('Loading');
   },
+
+  //返回messageBox属性对象
+  msg_box_attr: function() {
+    return {x: 0, y: this.height() + this.map_grid.padding, w: this.width(), h: this.msg_box.height,};
+  }
 }
 
 //用于设置结束消息的样式
