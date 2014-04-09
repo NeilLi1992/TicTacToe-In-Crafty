@@ -6,10 +6,21 @@ Crafty.scene('Loading', function() {
     'assets/init2.jpg',
     'assets/circle2.jpg',
     'assets/cross2.jpg',
+    'assets/start.wav',
+    'assets/end.wav',
+    'assets/circle.wav',
+    'assets/cross.wav',
     ], function() {
       Crafty.sprite(121, 'assets/init2.jpg', {spr_origin: [0, 0]});
       Crafty.sprite(121, 'assets/circle2.jpg', {spr_O: [0, 0]});
       Crafty.sprite(121, 'assets/cross2.jpg', {spr_X: [0, 0]});
+
+      Crafty.audio.add({
+      start:      ['assets/start.wav'],
+      end:        ['assets/end.wav'],
+      O:          ['assets/circle.wav'],
+      X:          ['assets/cross.wav'],
+      });
 
       ///////////////////////////Fuck！！！！一定要注意，必须将下面这句写在function()内，
       //才表示等 【【【加载完毕后】】】才进入下个场景！我操，改了我一个晚上才找到这个问题！
@@ -44,6 +55,9 @@ Crafty.scene('Game', function() {
 
     }
   }
+
+  //播放开始声音
+  Crafty.audio.play('start');
 
   // 绑定检验方法
   this.validate = this.bind('Validate', function(){
@@ -85,6 +99,9 @@ Crafty.scene('Game', function() {
 
 //结束场景
 Crafty.scene('Ending', function() {
+  //播放结束声音
+  Crafty.audio.play('end');
+
   //绘制对话框背景
   Crafty.e('2D, DOM, Color, Mouse')
       .attr({x: Game.width()/6 - 10 , y: Game.height()/6, w: Game.width()/1.5 + 20, h: Game.height()/1.5})

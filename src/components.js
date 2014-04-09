@@ -43,6 +43,7 @@ Crafty.c('Block', {
               this.addComponent('spr_X');
               this._state = "X";
               Game.model[this.at().x][this.at().y] = "X"
+              Crafty.audio.play('X');
               Game.currentPlayer = "O";
             } else {
               // this.color(Game.color.O);
@@ -50,6 +51,7 @@ Crafty.c('Block', {
               this.addComponent('spr_O');
               this._state = "O";
               Game.model[this.at().x][this.at().y] = "O";
+              Crafty.audio.play('O');
               Game.currentPlayer = "X";
             }
 
